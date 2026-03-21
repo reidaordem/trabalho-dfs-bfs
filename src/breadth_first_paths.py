@@ -47,6 +47,7 @@ class BreadthFirstPaths:
     def __init__(self, G, s):
         self._marked = [False for _ in range(G.V)]
         self.edge_to = [0 for _ in range(G.V)]
+        self.visit_order = []
         self.s = s
         self.bfs(G, s)
 
@@ -56,6 +57,7 @@ class BreadthFirstPaths:
         queue.enqueue(s)
         while not queue.is_empty():
             v = queue.dequeue()
+            self.visit_order.append(v)
             for w in G.adj[v]:
                 if not self._marked[w]:
                     self.edge_to[w] = v
